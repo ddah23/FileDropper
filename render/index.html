@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
+  
+  <title>FileDropper</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200,0,0" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/screen-devices.css">
+  <link rel="stylesheet" href="./css/screen-main.css">
+  <link rel="stylesheet" href="./css/toast.css">
+  <link rel="stylesheet" href="./css/dark-mode.css">
+  <link rel="stylesheet" href="./css/mode-toggle.css">
+</head>
+
+<body>
+
+  <!-- SCREEN 1 — DEVICES -->
+  <div class="screen" id="screen-devices">
+
+    <div class="theme-mode">
+      <button class="theme-btn theme-btn-fixed" id="theme-btn">
+        <span class="material-symbols-rounded mode-icon" id="mode-icon">dark_mode</span>
+      </button>
+    </div>
+
+    <div class="devices-header">
+      <div class="header-title">
+        <h1>¿A quién le envías?</h1>
+        <p>Dispositivos conectados en tu misma red</p>
+      </div>
+
+      <div class="devices-grid" id="devices-grid">
+      </div>
+    </div>
+
+    <div class="devices-footer" id="devices-footer">
+      <span></span>
+    </div>
+
+  </div>
+
+  <!-- SCREEN 2 — MAIN -->
+  <div class="screen hidden" id="screen-main">
+
+    <div class="main-left">
+
+      <div class="topbar">
+        <div class="topbar-dest" id="topbarDest">
+          <div class="topbar-dest-icon">
+            <span class="material-symbols-rounded">desktop_windows</span>
+          </div>
+          <span class="topbar-dest-name" id="topbar-name"></span>
+          <div class="topbar-dest-status">
+            <div class="status-dot online" style="width:6px;height:6px;"></div>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="disconnect-btn" id="disconnect-btn">
+            <span class="material-symbols-rounded">close_small</span>
+            Desconectar
+          </button>
+          <button class="theme-btn" id="modeBtn">
+            <span class="material-symbols-rounded mode-icon" id="mode-icon">dark_mode</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="main-body">
+
+        <div class="dropzone-area">
+
+          <div class="dropzone" id="dropzone">
+            <div class="drop-icon">
+              <span class="material-symbols-rounded">upload</span>
+            </div>
+            <div class="drop-text">
+              <h3>Arrastra tus archivos aquí</h3>
+              <p>o haz click para seleccionar</p>
+            </div>
+          </div>
+
+          <button class="toggle-history" id="toggleBtn">
+            <span class="material-symbols-rounded">schedule</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="history-panel collapsed" id="historyPanel">
+      <div class="history-header">
+        <div class="history-tabs">
+          <button class="history-tab active" id="tabSent">Enviados</button>
+          <button class="history-tab" id="tabReceived">Recibidos</button>
+        </div>
+        <button class="btn-icon" style="width:24px;height:24px;flex-shrink:0;">
+          <span class="material-symbols-rounded" id="close-panel">close_small</span>
+        </button>
+      </div>
+
+      <!-- SENT LIST -->
+      <div class="history-list" id="listSent"></div>
+
+      <!-- RECEIVED LIST -->
+      <div class="history-list" id="listReceived" style="display:none"></div>
+
+    </div>
+
+  </div>
+
+  <!-- NOTIFICATIONS -->
+  <div class="incoming-toast" id="incomingToast" style="cursor:pointer;">
+    <div class="toast-icon">
+      <span class="material-symbols-rounded">file_download</span>
+    </div>
+    <div class="toast-info">
+      <div class="toast-title">0 archivos recibidos</div>
+      <div class="toast-sub"></div>
+    </div>
+    <audio id="toastSound" src="../public/newFile.mp3" preload="auto"></audio>
+  </div>
+  
+  <script src="./js/mode-theme.js"></script>
+  <script src="./js/screens.js"></script>
+  <script src="./js/file-transfer.js"></script>
+  <script src="./js/history-panel.js"></script>
+  
+</body>
+
+</html>

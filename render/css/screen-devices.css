@@ -1,0 +1,140 @@
+
+#screen-devices {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 885px;
+    height: 562.4px;
+    padding: 8.5px 20px;
+    background: var(--bg);
+}
+
+/* HEADER */
+.devices-header {
+    text-align: center; 
+}
+
+.devices-header h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.devices-header p {
+    font-size: 13px;
+    color: var(--text2);
+}
+
+/* DEVICES GRID */
+.devices-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 680px;
+}
+
+.device-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    width: 180px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+}
+
+.device-card:hover {
+    border-color: var(--border2);
+    background: var(--surface);
+}
+
+.device-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--surface3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.device-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.device-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.device-status {
+    display: flex;
+    align-items: center;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.connect-btn {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    color: var(--text2);
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    text-align: center;
+}
+
+.devices-footer {
+    height: 30px;
+}
+
+/* ONLINE */
+.status-dot.online {
+    background: var(--green);
+    box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
+}
+
+.device-card:not(.offline) .connect-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+/* OFFLINE */
+
+.device-card.offline {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.device-card.offline:hover {
+    transform: none;
+}
+
+.status-dot.offline {
+    background: var(--text3);
+}

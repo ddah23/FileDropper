@@ -1,0 +1,37 @@
+.theme-mode {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+}
+
+.theme-btn {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text2);
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.theme-btn:hover {
+    background: var(--surface2);
+    border-color: var(--border2);
+    color: var(--text);
+}
+
+.theme-btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.theme-btn .icon-sun {
+    display: none; 
+}
+
+.theme-btn .icon-moon {
+    display: block; 
+}
