@@ -95,6 +95,3 @@ Confirm both devices are on the same network and that no firewall is blocking mD
 
 **A connected device shows as offline unexpectedly.**
 FileDropper marks a device offline if it has not received a heartbeat within two seconds. This is expected if the other device's app was closed or the network connection dropped.
-
-## License
-
