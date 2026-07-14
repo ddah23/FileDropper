@@ -10,6 +10,10 @@ FileDropper is a desktop application for sending files between devices on the sa
 - Light and dark mode.
 - Desktop notification when a file arrives while the app is in the background.
 
+## Demo
+
+![PharmaPlus demo](assets/demo.gif)
+
 ## How it works
 
 FileDropper announces itself on the network using mDNS (Bonjour) and listens for other instances doing the same. Each device also sends a UDP heartbeat every second so that peers can detect disconnects faster than mDNS alone allows.
