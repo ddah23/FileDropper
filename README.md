@@ -11,8 +11,10 @@ FileDropper is a desktop application for sending files between devices on the sa
 - Desktop notification when a file arrives while the app is in the background.
 
 ## Demo
-
+### Device Discovery
 ![PharmaPlus demo](assets/demo1.gif)
+
+### Sending Files (Drag & Drop)
 ![PharmaPlus demo](assets/demo2.gif)
 
 ## How it works
