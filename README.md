@@ -21,12 +21,15 @@ FileDropper is a desktop application for sending files between devices on the sa
 
 FileDropper announces itself on the network using mDNS (Bonjour) and listens for other instances doing the same. Each device also sends a UDP heartbeat every second so that peers can detect disconnects faster than mDNS alone allows.
 
-When you select a device and drop a file, FileDropper uploads it over HTTP to that device on port `3737`. If you drop a folder, FileDropper compresses it to a temporary `.zip` file first and the receiving device extracts it automatically. Every transfer is recorded in a local history that persists between sessions.
+When you select a device and drop a file, FileDropper uploads it over HTTP to that device on port `3737`. If you drop a folder, FileDropper compresses it to a temporary `.zip` file first and the receiving device extracts it automatically.
+
+> [!NOTE]
+> All devices must be on the same WiFi network.
 
 ## Requirements
 
 - [Node.js](https://nodejs.org/) 22.12.0 or later.
-- All devices must be on the same local network and able to reach each other on ports `3737` (TCP) and `3738` (UDP).
+- All devices must be able to reach each other on ports `3737` (TCP) and `3738` (UDP).
 
 ## Installation
 
