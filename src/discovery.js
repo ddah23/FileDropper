@@ -3,28 +3,36 @@ const { BrowserWindow, ipcMain } = require("electron");
 const dgram = require("dgram");
 const os = require("os");
 
-const myHostName = os.hostname();
-const instance = new Bonjour();
-instance.publish({ name: `${myHostName}`, type: "filedropper", protocol: "tcp", port: 3737 });
+const HEARTBEAT_PORT = 3738;
+const SERVICE_PORT = 3737;
+const OFFLINE_THRESHOLD_MS = 2000;
+
+const hostName = os.hostname();
+
+// Make FileDropper discoverable on the local network
+const bonjourInstance = new Bonjour();
+bonjourInstance.publish({ name: hostName, type: "filedropper", protocol: "tcp", port: SERVICE_PORT });
 
 let devicesDetected = new Map();
-const deviceFinder = instance.find({ type: "filedropper", protocol: "tcp" });
+const deviceFinder = bonjourInstance.find({ type: "filedropper", protocol: "tcp" });
 
+// mDNS doesn't always notify quickly when a device goes offline, so we
+// complement it with UDP heartbeats to know in real time who's still online
 const udpServer = dgram.createSocket("udp4");
 
 udpServer.on("message", (msg, rinfo) => {
-    if (msg.toString() === "HEARTBEAT_ALIVE") {
-        for (const [fqdn, device] of devicesDetected.entries()) {
-            if (device.IP === rinfo.address) {
-                device.isOnline = true;
-                device.lastSeen = Date.now();
-                devicesDetected.set(fqdn, device);
-            }
+    if (msg.toString() !== "HEARTBEAT_ALIVE") return;
+
+    for (const [fqdn, device] of devicesDetected.entries()) {
+        if (device.IP === rinfo.address) {
+            device.isOnline = true;
+            device.lastSeen = Date.now();
+            devicesDetected.set(fqdn, device);
         }
     }
 });
 
-udpServer.bind(3738);
+udpServer.bind(HEARTBEAT_PORT);
 
 function getDeviceNameByIp(ip) {
     const devices = Array.from(devicesDetected.values());
@@ -33,7 +41,7 @@ function getDeviceNameByIp(ip) {
 }
 
 deviceFinder.on("up", (service) => {
-    if (service.name === myHostName) return;
+    if (service.name === hostName) return;
     const ip = service.addresses.find(address => address.includes("."));
 
     const newDevice = {
@@ -51,11 +59,12 @@ deviceFinder.on("up", (service) => {
     }
 });
 
+// Periodically tells other devices that the user is still active on the app
 setInterval(() => {
     const client = dgram.createSocket("udp4");
     for (const device of devicesDetected.values()) {
         if (device.IP) {
-            client.send("HEARTBEAT_ALIVE", 3738, device.IP, (err) => {
+            client.send("HEARTBEAT_ALIVE", HEARTBEAT_PORT, device.IP, (err) => {
                 if (err) console.error(err);
             });
         }
@@ -64,8 +73,8 @@ setInterval(() => {
 
 ipcMain.handle("check-online-status", async () => {
     const now = Date.now();
-    for (const [fqdn, device] of devicesDetected.entries()) {
-        if (now - device.lastSeen > 2000) {
+    for (const device of devicesDetected.values()) {
+        if (now - device.lastSeen > OFFLINE_THRESHOLD_MS) {
             device.isOnline = false;
         }
     }

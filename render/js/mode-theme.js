@@ -20,5 +20,6 @@ setTheme(savedTheme());
 function toggleTheme() {
     setTheme(root.dataset.theme === "dark" ? "light" : "dark");
 }
+
 document.querySelectorAll(".theme-btn")
     .forEach(btn => btn.addEventListener("click", toggleTheme));

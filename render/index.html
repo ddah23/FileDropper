@@ -6,20 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
-  
+
   <title>FileDropper</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200,0,0" />
-  
-  <!-- CSS -->
+
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/screen-devices.css">
   <link rel="stylesheet" href="./css/screen-main.css">
@@ -30,7 +29,7 @@
 
 <body>
 
-  <!-- SCREEN 1 — DEVICES -->
+  <!-- Screen 1: target device selection -->
   <div class="screen" id="screen-devices">
 
     <div class="theme-mode">
@@ -45,6 +44,7 @@
         <p>Dispositivos conectados en tu misma red</p>
       </div>
 
+      <!-- Device cards are generated dynamically in screens.js -->
       <div class="devices-grid" id="devices-grid">
       </div>
     </div>
@@ -55,7 +55,7 @@
 
   </div>
 
-  <!-- SCREEN 2 — MAIN -->
+  <!-- Screen 2: sending files to the already connected device -->
   <div class="screen hidden" id="screen-main">
 
     <div class="main-left">
@@ -103,6 +103,7 @@
       </div>
     </div>
 
+    <!-- Collapsible side panel with sent/received history -->
     <div class="history-panel collapsed" id="historyPanel">
       <div class="history-header">
         <div class="history-tabs">
@@ -114,17 +115,17 @@
         </button>
       </div>
 
-      <!-- SENT LIST -->
+      <!-- Sent list -->
       <div class="history-list" id="listSent"></div>
 
-      <!-- RECEIVED LIST -->
+      <!-- Received list -->
       <div class="history-list" id="listReceived" style="display:none"></div>
 
     </div>
 
   </div>
 
-  <!-- NOTIFICATIONS -->
+  <!-- Floating notification -->
   <div class="incoming-toast" id="incomingToast" style="cursor:pointer;">
     <div class="toast-icon">
       <span class="material-symbols-rounded">file_download</span>
@@ -135,12 +136,13 @@
     </div>
     <audio id="toastSound" src="../public/newFile.mp3" preload="auto"></audio>
   </div>
-  
+
+  <!-- file-transfer.js and history-panel.js depend on elements created above -->
   <script src="./js/mode-theme.js"></script>
   <script src="./js/screens.js"></script>
   <script src="./js/file-transfer.js"></script>
   <script src="./js/history-panel.js"></script>
-  
+
 </body>
 
 </html>

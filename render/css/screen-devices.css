@@ -1,4 +1,3 @@
-
 #screen-devices {
     display: flex;
     flex-direction: column;
@@ -10,9 +9,8 @@
     background: var(--bg);
 }
 
-/* HEADER */
 .devices-header {
-    text-align: center; 
+    text-align: center;
 }
 
 .devices-header h1 {
@@ -27,7 +25,6 @@
     color: var(--text2);
 }
 
-/* DEVICES GRID */
 .devices-grid {
     display: flex;
     gap: 16px;
@@ -64,7 +61,7 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .device-info {
@@ -112,7 +109,6 @@
     height: 30px;
 }
 
-/* ONLINE */
 .status-dot.online {
     background: var(--green);
     box-shadow: 0 0 5px rgba(22, 163, 74, 0.4);
@@ -123,8 +119,6 @@
     border-color: var(--accent);
     color: #fff;
 }
-
-/* OFFLINE */
 
 .device-card.offline {
     opacity: 0.5;
