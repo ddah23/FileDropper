@@ -78,10 +78,6 @@ render/
   js/                Renderer-side scripts (UI, drag-and-drop, theming)
 ```
 
-## Data storage
-
-Transfer history is stored in `history.json` inside the application's user data directory, so it persists across restarts and updates. Received files are saved to the desktop of the receiving device.
-
 ## Troubleshooting
 
 **A device does not appear in the list.**
