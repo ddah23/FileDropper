@@ -5,7 +5,6 @@ const fs = require("fs");
 const os = require("os");
 const { BrowserWindow } = require("electron");
 const AdmZip = require("adm-zip");
-const { addReceived } = require("./history");
 const { getDeviceNameByIp } = require("./discovery");
 
 const PORT = 3737;
@@ -37,7 +36,6 @@ const server = http.createServer((req, res) => {
             }
 
             const windows = BrowserWindow.getAllWindows();
-            addReceived({ name: filename, size: 0, origin: originName, status: "ok", timestamp: new Date().toISOString() });
             if (windows.length > 0) windows[0].webContents.send("file-received", { name: filename, size: 0, origin: originName });
         });
 

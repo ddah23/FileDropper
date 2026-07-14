@@ -6,11 +6,10 @@ contextBridge.exposeInMainWorld("api", {
     setSelectedIP: (ip) => ipcRenderer.invoke("set-selected-ip", ip),
     openFolder: (path) => ipcRenderer.invoke("open-folder", path),
     openDesktop: () => ipcRenderer.invoke("open-desktop"),
-    
+
     getFilePath: (file) => webUtils.getPathForFile(file),
 
     sendFile: (files) => ipcRenderer.send("send-file", files),
-    getHistory: () => ipcRenderer.send("get-history"),
 
     clearProgress: () => ipcRenderer.removeAllListeners("transfer-progress"),
 

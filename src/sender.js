@@ -2,9 +2,8 @@ const fs = require("fs");
 const axios = require("axios");
 const { BrowserWindow } = require("electron");
 const { isFolder } = require("./fileHandler");
-const { addSent } = require("./history");
 
-// Sends one or multiple files to the target device; reports progress and saves history
+// Sends one or multiple files to the target device; reports progress
 async function sendFiles(files, targetIP) {
     const mainWindow = BrowserWindow.getAllWindows()[0];
 
@@ -40,23 +39,9 @@ async function sendFiles(files, targetIP) {
             if (isDirectory) fs.unlinkSync(pathToSend);
 
             if (mainWindow) mainWindow.webContents.send("transfer-done", { name: file.name, size: totalBytes });
-            addSent({
-                name: file.name,
-                size: totalBytes,
-                destination: targetIP,
-                status: "ok",
-                timestamp: new Date().toISOString()
-            });
             console.log(`Successfully sent: ${filenameToSend}`);
         } catch (error) {
             if (mainWindow) mainWindow.webContents.send("transfer-error", { name: filenameToSend, size: 0, message: error.message });
-            addSent({
-                name: filenameToSend,
-                size: 0,
-                destination: targetIP,
-                status: "error",
-                timestamp: new Date().toISOString()
-            });
             console.error("Error sending file:", error.message);
         }
     }
