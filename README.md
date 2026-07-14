@@ -12,7 +12,8 @@ FileDropper is a desktop application for sending files between devices on the sa
 
 ## Demo
 
-![PharmaPlus demo](assets/demo.gif)
+![PharmaPlus demo](assets/demo1.gif)
+![PharmaPlus demo](assets/demo2.gif)
 
 ## How it works
 
